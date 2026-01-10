@@ -241,23 +241,23 @@ class WeeklyPlanPDF(FPDF):
             self.cell(120, 6, milestone, 1, 1, 'L')
             
     def _add_exercise_table(self, exercises):
-        self.set_font('Helvetica', 'B', 8)
+        self.set_font('Helvetica', 'B', 7)
         self.set_fill_color(30, 60, 114)
         self.set_text_color(255, 255, 255)
-        self.cell(55, 6, 'Exercise', 1, 0, 'C', True)
-        self.cell(30, 6, 'Sets x Reps', 1, 0, 'C', True)
-        self.cell(20, 6, 'Rest', 1, 0, 'C', True)
-        self.cell(85, 6, 'Notes', 1, 1, 'C', True)
+        self.cell(70, 6, 'Exercise', 1, 0, 'C', True)
+        self.cell(25, 6, 'Sets x Reps', 1, 0, 'C', True)
+        self.cell(18, 6, 'Rest', 1, 0, 'C', True)
+        self.cell(77, 6, 'Notes', 1, 1, 'C', True)
         
-        self.set_font('Helvetica', '', 8)
+        self.set_font('Helvetica', '', 7)
         self.set_text_color(0, 0, 0)
         for i, (exercise, sets_reps, rest, notes) in enumerate(exercises):
             fill = i % 2 == 0
             self.set_fill_color(245, 245, 245) if fill else self.set_fill_color(255, 255, 255)
-            self.cell(55, 6, exercise, 1, 0, 'L', fill)
-            self.cell(30, 6, sets_reps, 1, 0, 'C', fill)
-            self.cell(20, 6, rest, 1, 0, 'C', fill)
-            self.cell(85, 6, notes, 1, 1, 'L', fill)
+            self.cell(70, 6, exercise, 1, 0, 'L', fill)
+            self.cell(25, 6, sets_reps, 1, 0, 'C', fill)
+            self.cell(18, 6, rest, 1, 0, 'C', fill)
+            self.cell(77, 6, notes, 1, 1, 'L', fill)
             
     def _add_stretch_table(self, stretches):
         self.set_font('Helvetica', '', 9)
@@ -540,36 +540,36 @@ class DailyTrackerPDF(FPDF):
                     self.cell(0, 6, 'MAIN WORKOUT', 0, 1, 'L', True)
                     
                     # Exercise table header
-                    self.set_font('Helvetica', 'B', 8)
+                    self.set_font('Helvetica', 'B', 7)
                     self.set_fill_color(30, 60, 114)
                     self.set_text_color(255, 255, 255)
-                    self.cell(50, 6, 'Exercise', 1, 0, 'C', True)
-                    self.cell(15, 6, 'Sets', 1, 0, 'C', True)
-                    self.cell(20, 6, 'Target', 1, 0, 'C', True)
+                    self.cell(58, 6, 'Exercise', 1, 0, 'C', True)
+                    self.cell(12, 6, 'Sets', 1, 0, 'C', True)
+                    self.cell(18, 6, 'Target', 1, 0, 'C', True)
                     
                     # Set columns for logging
                     for i in range(1, 5):
-                        self.cell(24, 6, f'Set {i}', 1, 0, 'C', True)
+                        self.cell(23, 6, f'Set {i}', 1, 0, 'C', True)
                     self.ln()
                     
                     self.set_text_color(0, 0, 0)
-                    self.set_font('Helvetica', '', 8)
+                    self.set_font('Helvetica', '', 7)
                     
                     for exercise, sets, reps in template['exercises']:
-                        self.cell(50, 12, exercise, 1, 0, 'L')
-                        self.cell(15, 12, str(sets), 1, 0, 'C')
-                        self.cell(20, 12, reps, 1, 0, 'C')
+                        self.cell(58, 12, exercise, 1, 0, 'L')
+                        self.cell(12, 12, str(sets), 1, 0, 'C')
+                        self.cell(18, 12, reps, 1, 0, 'C')
                         
                         for i in range(4):
                             if i < sets:
                                 # Weight/Reps logging box
                                 y_pos = self.get_y()
-                                self.cell(24, 6, 'Wt:____', 1, 0, 'L')
-                                self.set_xy(self.get_x() - 24, y_pos + 6)
-                                self.cell(24, 6, 'Reps:__', 1, 0, 'L')
+                                self.cell(23, 6, 'Wt:___', 1, 0, 'L')
+                                self.set_xy(self.get_x() - 23, y_pos + 6)
+                                self.cell(23, 6, 'Rps:__', 1, 0, 'L')
                                 self.set_xy(self.get_x(), y_pos)
                             else:
-                                self.cell(24, 12, '-', 1, 0, 'C')
+                                self.cell(23, 12, '-', 1, 0, 'C')
                         self.ln()
                     
                     self.ln(2)
