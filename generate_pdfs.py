@@ -306,13 +306,13 @@ class DailyTrackerPDF(FPDF):
                     'Wrist circles (20 each way)',
                 ],
                 'exercises': [
-                    ('Flat Bench Press', 4, '10-12'),
-                    ('Incline Dumbbell Press', 3, '10-12'),
-                    ('Overhead Press (seated)', 4, '10-12'),
+                    ('Bench Press', 4, '10-12'),
+                    ('Incline DB Press', 3, '10-12'),
+                    ('Overhead Press', 4, '10-12'),
                     ('Cable Flyes', 3, '12-15'),
                     ('Lateral Raises', 3, '12-15'),
-                    ('Tricep Dips (assisted)', 3, '10-12'),
-                    ('Overhead Tricep Extension', 3, '12-15'),
+                    ('Tricep Dips', 3, '10-12'),
+                    ('Tricep Extension', 3, '12-15'),
                 ],
                 'cooldown': [
                     'Chest doorway stretch (45s each)',
@@ -334,13 +334,13 @@ class DailyTrackerPDF(FPDF):
                     'Shoulder rotations (20 reps)',
                 ],
                 'exercises': [
-                    ('Pull-ups (assisted if needed)', 4, '8-10'),
+                    ('Pull-ups', 4, '8-10'),
                     ('Barbell Rows', 4, '10-12'),
-                    ('Single-Arm Dumbbell Row', 3, '10-12 each'),
+                    ('DB Row (each)', 3, '10-12'),
                     ('Face Pulls', 3, '15-20'),
                     ('Barbell Curls', 3, '10-12'),
                     ('Hammer Curls', 3, '12-15'),
-                    ('Reverse Grip Curls', 2, '15'),
+                    ('Reverse Curls', 2, '15'),
                 ],
                 'cooldown': [
                     'Lat stretch (45s each)',
@@ -386,14 +386,14 @@ class DailyTrackerPDF(FPDF):
                     'Deep squat holds (3x15 sec)',
                 ],
                 'exercises': [
-                    ('Barbell Squats', 4, '10-12'),
-                    ('Romanian Deadlift', 4, '10-12'),
+                    ('Squats', 4, '10-12'),
+                    ('Romanian DL', 4, '10-12'),
                     ('Leg Press', 3, '12-15'),
-                    ('Walking Lunges', 3, '12 each'),
+                    ('Lunges (each)', 3, '12'),
                     ('Leg Curls', 3, '12-15'),
-                    ('Calf Raises (seated)', 3, '15-20'),
-                    ('Calf Raises (standing)', 3, '15-20'),
-                    ('Hanging Leg Raises', 3, '12-15'),
+                    ('Calf Raise Seat', 3, '15-20'),
+                    ('Calf Raise Stand', 3, '15-20'),
+                    ('Leg Raises', 3, '12-15'),
                 ],
                 'cooldown': [
                     'Standing quad stretch (60s each)',
@@ -435,13 +435,13 @@ class DailyTrackerPDF(FPDF):
                     'Cat-cow stretches (10 reps)',
                 ],
                 'exercises': [
-                    ('Incline Treadmill (15% grade)', 1, '30-45 min'),
-                    ('Box Step-ups', 3, '15 each'),
+                    ('Incline Walk 15%', 1, '30-45m'),
+                    ('Step-ups (each)', 3, '15'),
                     ('Goblet Squats', 3, '20'),
-                    ('Single-Leg RDL', 3, '12 each'),
-                    ('Walking Lunges', 3, '20 each'),
-                    ('Plank to Push-up', 3, '12'),
-                    ('Farmer\'s Walks', 3, '40m'),
+                    ('Single Leg RDL', 3, '12'),
+                    ('Lunges (each)', 3, '20'),
+                    ('Plank Push-up', 3, '12'),
+                    ('Farmer Walk', 3, '40m'),
                 ],
                 'cooldown': [
                     'Full body stretching routine',
@@ -540,36 +540,36 @@ class DailyTrackerPDF(FPDF):
                     self.cell(0, 6, 'MAIN WORKOUT', 0, 1, 'L', True)
                     
                     # Exercise table header
-                    self.set_font('Helvetica', 'B', 7)
+                    self.set_font('Helvetica', 'B', 6)
                     self.set_fill_color(30, 60, 114)
                     self.set_text_color(255, 255, 255)
-                    self.cell(58, 6, 'Exercise', 1, 0, 'C', True)
-                    self.cell(12, 6, 'Sets', 1, 0, 'C', True)
-                    self.cell(18, 6, 'Target', 1, 0, 'C', True)
+                    self.cell(42, 6, 'Exercise', 1, 0, 'C', True)
+                    self.cell(10, 6, 'Sets', 1, 0, 'C', True)
+                    self.cell(14, 6, 'Target', 1, 0, 'C', True)
                     
                     # Set columns for logging
                     for i in range(1, 5):
-                        self.cell(23, 6, f'Set {i}', 1, 0, 'C', True)
+                        self.cell(22, 6, f'Set {i}', 1, 0, 'C', True)
                     self.ln()
                     
                     self.set_text_color(0, 0, 0)
-                    self.set_font('Helvetica', '', 7)
+                    self.set_font('Helvetica', '', 6)
                     
                     for exercise, sets, reps in template['exercises']:
-                        self.cell(58, 12, exercise, 1, 0, 'L')
-                        self.cell(12, 12, str(sets), 1, 0, 'C')
-                        self.cell(18, 12, reps, 1, 0, 'C')
+                        self.cell(42, 10, exercise, 1, 0, 'L')
+                        self.cell(10, 10, str(sets), 1, 0, 'C')
+                        self.cell(14, 10, reps, 1, 0, 'C')
                         
                         for i in range(4):
                             if i < sets:
                                 # Weight/Reps logging box
                                 y_pos = self.get_y()
-                                self.cell(23, 6, 'Wt:___', 1, 0, 'L')
-                                self.set_xy(self.get_x() - 23, y_pos + 6)
-                                self.cell(23, 6, 'Rps:__', 1, 0, 'L')
+                                self.cell(22, 5, 'Wt:__', 1, 0, 'L')
+                                self.set_xy(self.get_x() - 22, y_pos + 5)
+                                self.cell(22, 5, 'Rp:__', 1, 0, 'L')
                                 self.set_xy(self.get_x(), y_pos)
                             else:
-                                self.cell(23, 12, '-', 1, 0, 'C')
+                                self.cell(22, 10, '-', 1, 0, 'C')
                         self.ln()
                     
                     self.ln(2)
