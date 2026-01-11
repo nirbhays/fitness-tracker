@@ -540,36 +540,30 @@ class DailyTrackerPDF(FPDF):
                     self.cell(0, 6, 'MAIN WORKOUT', 0, 1, 'L', True)
                     
                     # Exercise table header
-                    self.set_font('Helvetica', 'B', 6)
+                    self.set_font('Helvetica', 'B', 7)
                     self.set_fill_color(30, 60, 114)
                     self.set_text_color(255, 255, 255)
-                    self.cell(42, 6, 'Exercise', 1, 0, 'C', True)
-                    self.cell(10, 6, 'Sets', 1, 0, 'C', True)
-                    self.cell(14, 6, 'Target', 1, 0, 'C', True)
-                    
-                    # Set columns for logging
-                    for i in range(1, 5):
-                        self.cell(22, 6, f'Set {i}', 1, 0, 'C', True)
-                    self.ln()
+                    self.cell(45, 7, 'Exercise', 1, 0, 'C', True)
+                    self.cell(12, 7, 'Sets', 1, 0, 'C', True)
+                    self.cell(16, 7, 'Reps', 1, 0, 'C', True)
+                    self.cell(27, 7, 'Set 1', 1, 0, 'C', True)
+                    self.cell(27, 7, 'Set 2', 1, 0, 'C', True)
+                    self.cell(27, 7, 'Set 3', 1, 0, 'C', True)
+                    self.cell(27, 7, 'Set 4', 1, 1, 'C', True)
                     
                     self.set_text_color(0, 0, 0)
-                    self.set_font('Helvetica', '', 6)
+                    self.set_font('Helvetica', '', 7)
                     
                     for exercise, sets, reps in template['exercises']:
-                        self.cell(42, 10, exercise, 1, 0, 'L')
-                        self.cell(10, 10, str(sets), 1, 0, 'C')
-                        self.cell(14, 10, reps, 1, 0, 'C')
+                        self.cell(45, 8, exercise, 1, 0, 'L')
+                        self.cell(12, 8, str(sets), 1, 0, 'C')
+                        self.cell(16, 8, reps, 1, 0, 'C')
                         
                         for i in range(4):
                             if i < sets:
-                                # Weight/Reps logging box
-                                y_pos = self.get_y()
-                                self.cell(22, 5, 'Wt:__', 1, 0, 'L')
-                                self.set_xy(self.get_x() - 22, y_pos + 5)
-                                self.cell(22, 5, 'Rp:__', 1, 0, 'L')
-                                self.set_xy(self.get_x(), y_pos)
+                                self.cell(27, 8, '___/___', 1, 0, 'C')
                             else:
-                                self.cell(22, 10, '-', 1, 0, 'C')
+                                self.cell(27, 8, '-', 1, 0, 'C')
                         self.ln()
                     
                     self.ln(2)
